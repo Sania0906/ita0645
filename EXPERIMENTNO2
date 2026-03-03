@@ -1,0 +1,24 @@
+# Training Data (EnjoySport Dataset)
+data = [
+    ['Sunny','Warm','Normal','Strong','Warm','Same','Yes'],
+    ['Sunny','Warm','High','Strong','Warm','Same','Yes'],
+    ['Rainy','Cold','High','Strong','Warm','Change','No'],
+    ['Sunny','Warm','High','Strong','Cool','Change','Yes']
+]
+
+# Initialize S and G
+S = data[0][:-1].copy()
+G = [['?'] * len(S)]
+
+for sample in data:
+    if sample[-1] == 'Yes':   # Positive example
+        for i in range(len(S)):
+            if S[i] != sample[i]:
+                S[i] = '?'
+    else:   # Negative example
+        for i in range(len(S)):
+            if S[i] != sample[i]:
+                G[0][i] = S[i]
+
+print("Final Specific Hypothesis (S):", S)
+print("Final General Hypothesis (G):", G)
