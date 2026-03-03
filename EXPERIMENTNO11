@@ -1,0 +1,5 @@
+score = 750
+if score > 700:
+    print("Good Credit")
+else:
+    print("Bad Credit")
