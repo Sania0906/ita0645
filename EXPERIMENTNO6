@@ -1,0 +1,7 @@
+data = [['Sunny','Yes'],['Rainy','No'],['Sunny','Yes'],['Rainy','No']]
+
+yes = sum(1 for row in data if row[1]=='Yes')
+no = len(data) - yes
+
+print("P(Yes):", yes/len(data))
+print("P(No):", no/len(data))
