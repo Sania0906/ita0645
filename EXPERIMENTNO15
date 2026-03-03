@@ -1,0 +1,61 @@
+import math
+
+# Iris Dataset
+data = [
+    [5.1, 1.4, 'Setosa'],
+    [4.9, 1.4, 'Setosa'],
+    [6.2, 4.5, 'Versicolor'],
+    [5.9, 4.2, 'Versicolor']
+]
+
+test = [5.0, 1.5]
+
+# Separate classes
+setosa = [row for row in data if row[2] == 'Setosa']
+versicolor = [row for row in data if row[2] == 'Versicolor']
+
+
+def mean(values):
+    return sum(values) / len(values)
+
+
+def variance(values):
+    if len(values) <= 1:
+        return 0.0001  # prevent zero variance if only 1 value
+
+    m = mean(values)
+    v = sum((x - m) ** 2 for x in values) / (len(values) - 1)
+
+    if v == 0:
+        v = 0.0001  # add smoothing
+
+    return v
+
+
+def gaussian(x, m, v):
+    # final safety check
+    if v == 0:
+        v = 0.0001
+    return (1 / math.sqrt(2 * math.pi * v)) * math.exp(-((x - m) ** 2) / (2 * v))
+
+
+def calculate_prob(class_data):
+    prob = 1
+    for i in range(2):
+        values = [row[i] for row in class_data]
+        m = mean(values)
+        v = variance(values)
+        prob *= gaussian(test[i], m, v)
+    return prob
+
+
+p_setosa = calculate_prob(setosa)
+p_versi = calculate_prob(versicolor)
+
+print("Probability Setosa:", p_setosa)
+print("Probability Versicolor:", p_versi)
+
+if p_setosa > p_versi:
+    print("Predicted Class: Setosa")
+else:
+    print("Predicted Class: Versicolor")
