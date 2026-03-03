@@ -1,0 +1,3 @@
+rooms = 3
+price = rooms * 100000
+print("House Price:", price)
