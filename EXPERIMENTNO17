@@ -1,0 +1,16 @@
+# Mobile dataset [RAM, Storage, Price_Class]
+data = [
+    [4, 64, 0],
+    [6, 128, 1],
+    [8, 256, 1],
+    [3, 32, 0]
+]
+
+# Test Mobile
+test = [6, 128]
+
+# Simple Rule-based classification
+if test[0] >= 6 and test[1] >= 128:
+    print("Predicted Price Category: High")
+else:
+    print("Predicted Price Category: Low")
