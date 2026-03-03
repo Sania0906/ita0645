@@ -1,0 +1,32 @@
+# Dataset: [Income, Loan_Status]
+data = [
+    [50000, 'Approved'],
+    [60000, 'Approved'],
+    [30000, 'Rejected'],
+    [80000, 'Approved'],
+    [25000, 'Rejected']
+]
+
+test_income = 55000
+
+approved = [row[0] for row in data if row[1]=='Approved']
+rejected = [row[0] for row in data if row[1]=='Rejected']
+
+def mean(values):
+    return sum(values)/len(values)
+
+def variance(values):
+    m = mean(values)
+    return sum((x-m)**2 for x in values)/len(values)
+
+import math
+def gaussian(x, m, v):
+    return (1/(math.sqrt(2*math.pi*v))) * math.exp(-((x-m)**2)/(2*v))
+
+p_app = gaussian(test_income, mean(approved), variance(approved))
+p_rej = gaussian(test_income, mean(rejected), variance(rejected))
+
+if p_app > p_rej:
+    print("Loan Approved")
+else:
+    print("Loan Rejected")
