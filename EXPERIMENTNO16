@@ -1,0 +1,17 @@
+# Compare Simple Accuracy of 3 Methods
+
+actual = [0,1,0,1,1]
+pred_knn = [0,1,0,1,0]
+pred_nb = [0,1,1,1,1]
+pred_log = [0,0,0,1,1]
+
+def accuracy(actual, predicted):
+    correct = 0
+    for i in range(len(actual)):
+        if actual[i] == predicted[i]:
+            correct += 1
+    return (correct/len(actual))*100
+
+print("KNN Accuracy:", accuracy(actual, pred_knn))
+print("Naive Bayes Accuracy:", accuracy(actual, pred_nb))
+print("Logistic Accuracy:", accuracy(actual, pred_log))
