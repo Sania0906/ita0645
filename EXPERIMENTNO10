@@ -1,0 +1,6 @@
+data = [1,2,3,10,11,12]
+
+mean1 = sum(data[:3])/3
+mean2 = sum(data[3:])/3
+
+print("Cluster Means:", mean1, mean2)
