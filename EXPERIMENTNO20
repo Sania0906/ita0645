@@ -1,0 +1,19 @@
+# Past Year vs Sales
+years = [1,2,3,4]
+sales = [100,200,300,400]
+
+n = len(years)
+
+mean_x = sum(years)/n
+mean_y = sum(sales)/n
+
+num = sum((years[i]-mean_x)*(sales[i]-mean_y) for i in range(n))
+den = sum((years[i]-mean_x)**2 for i in range(n))
+
+b1 = num/den
+b0 = mean_y - b1*mean_x
+
+future_year = 5
+prediction = b0 + b1*future_year
+
+print("Predicted Future Sales:", prediction)
