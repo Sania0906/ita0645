@@ -1,0 +1,14 @@
+x = [1,2,3,4]
+y = [2,4,6,8]
+
+n = len(x)
+mean_x = sum(x)/n
+mean_y = sum(y)/n
+
+num = sum((x[i]-mean_x)*(y[i]-mean_y) for i in range(n))
+den = sum((x[i]-mean_x)**2 for i in range(n))
+
+b1 = num/den
+b0 = mean_y - b1*mean_x
+
+print("Prediction for 5:", b0 + b1*5)
